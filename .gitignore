@@ -1,2 +1,5 @@
 #Ignora los archivos relacionados a las variables de entorno
 .env
+
+/dump/*
+!/dump/.gitkeep
