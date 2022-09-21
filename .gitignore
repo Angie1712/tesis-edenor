@@ -1,3 +1,7 @@
 #Ignora los archivos relacionados a las variables de entorno
 .env
 .DS_Store
+
+/dump/*
+!/dump/.gitkeep
+
