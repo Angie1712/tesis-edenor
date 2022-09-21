@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<title> LOGIN-EDENOR-FLOTA-AUTOMOTOR  </title>
 	<!-- CSS -->
-		<link rel="stylesheet" href="style.css"
+		<link rel="stylesheet" href="../../Assets/css/style.css"
 	</head>
 	
 	<body>
