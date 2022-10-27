@@ -1,0 +1,58 @@
+* {
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+  font-family: arial;
+  background-image: url('ede.png');
+}
+
+#titulo {
+  width: 750px;
+  height: 150px;
+  background: #fd7e14;
+  margin-inline: auto;
+  margin-top: 50px;
+  box-shadow: 16px 30px 50px #000;
+  padding: 20px 20px;
+  font-size: 40px;
+  color: white;
+}
+
+
+#btn {
+	width: 450px;
+	height: 75px;
+	font-size: 40px;
+}
+
+#btn2 {
+	width: 450px;
+	height: 75px;
+	font-size: 40px;
+}
+
+#controls {
+	
+	width: 50%;
+	border: 3px solid #017bab;
+	margin-bottom: 17px;
+	padding: 11px 10px;
+	background: #fff;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.buttons {
+  
+  width: 10%;
+  height: 50px;
+  background: #017bab;
+  border: none;
+  color: white;
+  margin-bottom: 25px;
+}
+
