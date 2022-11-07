@@ -28,7 +28,7 @@
   // https://github.com/twbs/bootstrap/pull/10951.
   outline: 0;
   // We deliberately don't use `-webkit-overflow-scrolling: touch;` due to a
-  // gnarly iOS Safari bug: https://bugs.webkit.org/Mostrar_bug.cgi?id=158342
+  // gnarly iOS Safari bug: https://bugs.webkit.org/show_bug.cgi?id=158342
   // See also https://github.com/twbs/bootstrap/issues/17695
 }
 
@@ -45,8 +45,8 @@
     @include transition($modal-transition);
     transform: $modal-fade-transform;
   }
-  .modal.Mostrar & {
-    transform: $modal-Mostrar-transform;
+  .modal.show & {
+    transform: $modal-show-transform;
   }
 
   // When trying to close, animate focus to scale
@@ -87,7 +87,7 @@
     content: "";
   }
 
-  // Ensure `.modal-body` Mostrars scrollbar (IE10/11)
+  // Ensure `.modal-body` shows scrollbar (IE10/11)
   &.modal-dialog-scrollable {
     flex-direction: column;
     justify-content: center;
@@ -133,7 +133,7 @@
 
   // Fade for backdrop
   &.fade { opacity: 0; }
-  &.Mostrar { opacity: $modal-backdrop-opacity; }
+  &.show { opacity: $modal-backdrop-opacity; }
 }
 
 // Modal header
@@ -187,7 +187,7 @@
   }
 }
 
-// Measure scrollbar width for padding body during modal Mostrar/hide
+// Measure scrollbar width for padding body during modal show/hide
 .modal-scrollbar-measure {
   position: absolute;
   top: -9999px;

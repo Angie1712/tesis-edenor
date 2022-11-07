@@ -131,7 +131,7 @@ $enable-deprecation-messages:                 true !default;
 //
 // Control the default styling of most Bootstrap elements by modifying these
 // variables. Mostly focused on spacing.
-// You can add moreentradas to the $spacers map, should you need more variation.
+// You can add more entries to the $spacers map, should you need more variation.
 
 $spacer: 1rem !default;
 $spacers: () !default;
@@ -977,7 +977,7 @@ $modal-md:                          500px !default;
 $modal-sm:                          300px !default;
 
 $modal-fade-transform:              translate(0, -50px) !default;
-$modal-Mostrar-transform:              none !default;
+$modal-show-transform:              none !default;
 $modal-transition:                  transform .3s ease-out !default;
 $modal-scale-transform:             scale(1.02) !default;
 

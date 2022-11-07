@@ -616,8 +616,8 @@
         initialDuration = _ref$initialDuration === void 0 ? 1 : _ref$initialDuration,
         _ref$maxDuration = _ref.maxDuration,
         maxDuration = _ref$maxDuration === void 0 ? WINDOW.FontAwesomeDetection.timeout : _ref$maxDuration,
-        _ref$MostrarProgress = _ref.MostrarProgress,
-        MostrarProgress = _ref$MostrarProgress === void 0 ? false : _ref$MostrarProgress,
+        _ref$showProgress = _ref.showProgress,
+        showProgress = _ref$showProgress === void 0 ? false : _ref$showProgress,
         progressIndicator = _ref.progressIndicator;
     return new Promise(function (resolve, reject) {
       // eslint-disable-line compat/compat
@@ -625,7 +625,7 @@
         setTimeout(function () {
           var result = fn();
 
-          if (MostrarProgress) {
+          if (showProgress) {
             console.info(progressIndicator);
           }
 
@@ -683,7 +683,7 @@
       // That means that this code won't compile until after the outer script has run and injected
       // this code into the iframe. There are some compile time errors that might occur there.
       // For example, using single line (double-slash) comments like this one inside that function
-      // will probably cause it to choke. Chrome will Mostrar an error like this:
+      // will probably cause it to choke. Chrome will show an error like this:
       // Uncaught SyntaxError: Unexpected end of input
 
       var diagScriptFun = function diagScriptFun(nodeUnderTestId, testIconId, md5, parentOrigin) {
@@ -903,7 +903,7 @@
       pollUntil({
         // Give this overall timer a little extra cushion
         maxDuration: masterTimeout,
-        MostrarProgress: true,
+        showProgress: true,
         progressIndicator: 'waiting...',
         fn: function fn() {
           return Object.keys(nodesTested.conflict).length + Object.keys(nodesTested.noConflict).length >= testCount;
