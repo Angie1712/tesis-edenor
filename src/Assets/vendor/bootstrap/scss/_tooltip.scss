@@ -12,7 +12,7 @@
   word-wrap: break-word;
   opacity: 0;
 
-  &.Mostrar { opacity: $tooltip-opacity; }
+  &.show { opacity: $tooltip-opacity; }
 
   .arrow {
     position: absolute;

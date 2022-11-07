@@ -17,7 +17,7 @@
           font-family: 'Font Awesome 5 Free';
         }
       }
-      &.Mostrar {
+      &.show {
         .dropdown-toggle::after {
           content: '\f107';
         }

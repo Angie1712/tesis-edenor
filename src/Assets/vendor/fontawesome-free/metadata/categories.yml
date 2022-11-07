@@ -1123,7 +1123,7 @@ hotel:
     - infinity
     - key
     - luggage-cart
-    - Mostrarer
+    - shower
     - shuttle-van
     - smoking
     - smoking-ban
@@ -1159,7 +1159,7 @@ household:
     - lightbulb
     - plug
     - pump-soap
-    - Mostrarer
+    - shower
     - sink
     - snowflake
     - soap
@@ -1303,9 +1303,9 @@ interfaces:
     - rss-square
     - save
     - screwdriver
-    -Buscar
-    -Buscar-minus
-    -Buscar-plus
+    - search
+    - search-minus
+    - search-plus
     - share
     - share-alt
     - share-alt-square
@@ -1467,15 +1467,15 @@ maps:
     - road
     - rocket
     - route
-    -Buscar
-    -Buscar-minus
-    -Buscar-plus
+    - search
+    - search-minus
+    - search-plus
     - ship
     - shoe-prints
     - shopping-bag
     - shopping-basket
     - shopping-cart
-    - Mostrarer
+    - shower
     - snowplow
     - street-view
     - subway
@@ -1530,8 +1530,8 @@ marketing:
     - mail-bulk
     - poll
     - poll-h
-    -Buscar-dollar
-    -Buscar-location
+    - search-dollar
+    - search-location
   label: Marketing
 mathematics:
   icons:
@@ -1848,12 +1848,12 @@ objects:
     - screwdriver
     - scroll
     - sd-card
-    -Buscar
+    - search
     - shield-alt
     - shopping-bag
     - shopping-basket
     - shopping-cart
-    - Mostrarer
+    - shower
     - sim-card
     - skull-crossbones
     - sleigh
@@ -2513,7 +2513,7 @@ weather:
     - cloud-moon
     - cloud-moon-rain
     - cloud-rain
-    - cloud-Mostrarers-heavy
+    - cloud-showers-heavy
     - cloud-sun
     - cloud-sun-rain
     - meteor
