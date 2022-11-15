@@ -147,58 +147,52 @@ require '../../Controller/Vehiculo.php'
                         </li>
 
                     </ul>
-                   
+
                 </nav>
-                
+                <h1><strong>Crear Vehiculos</strong></h1>
                 <div class="container-fluid">
-                <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                        
-                <h1><strong>Vehiculos</strong></h1>
-                    <!-- <p class="mb-4">Crear Exámen<a target="_blank"
-                            href="register_exam3.php"></a>.</p> -->
-                            <a class="btn btn-success btn-sm" href="NewVehiculo.php">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link me-1">
-                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">
-                                </path><polyline points="15 3 21 3 21 9"></polyline>
-                                <line x1="10" y1="14" x2="21" y2="3"></line>
-                            </svg>Añadir Vehiculo</a>
-                            <hr>
-                            <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Información de los vehiculos</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                        <th style="width:120px;">Patente</th>
-                                        <th style="width:180px;">Modelo</th>
-                                        <th style="width:120px;">Marca</th>
-                                        </tr>
-                                    </thead>
-                                    </tbody>
-                                    <tbody>
-                                        <?php foreach(VehiculoController::searchVehiculo() as $r) : ?>
-                                        <tr>
-                                            <td><?php echo $r->Patente; ?></td>
-                                            <td><?php echo $r->Modelo; ?></td>
-                                            <td><?php echo $r->Marca; ?></td>
-                                        </tr>
-                                        <?php endforeach;?>
-                                    </tbody>
-                                </table>
+    <form id="vehiculo" action="CreatVehiculo.php" method="POST">
+        <div class="card">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Agregar Vehiculo</h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="p-5">
+                            <!--<form class="user" id="form_step_1">-->
+                            <div class="form-group row">
+                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                    <label for="exampleFormControlSelect1">Patente:</label>
+                                    <input type="text" name="patente" class="form-control" id="examName">
                                 </div>
                             </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-4 mb-3 mb-sm-0">
+                                            <label for="exampleFormControlSelect1">Modelo:</label>
+                                            <select method="post" name="id_modelo" class="form-control" id="examCategory"
+                                                onchange=setQuestion(this.value)>
+                                                <?php foreach(VehiculoController::searchModelo() as $r) :?>
+                                                <option value=<?php echo $r->id_modelo;?>><?php echo $r->Modelo; ?>
+                                                </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                            <button class="btn btn-primary btn-user btn-block col-sm-1" type="submit">
+                                Continuar
+                            </button>
+                            <!--</form>-->
                         </div>
                     </div>
-
-                    </div>     
-
                 </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+            </div>
             <!-- End of Main Content -->
 
         </div>
