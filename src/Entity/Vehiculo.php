@@ -4,7 +4,7 @@ class Vehiculo
 {
     private $id_vehiculo;
     private $patente;
-    private $modelo;
+    private $id_Modelo;
 
     public function getId_vehiculo(){
 		return $this->id_vehiculo;
@@ -14,7 +14,7 @@ class Vehiculo
 		$this->id_vehiculo = $id_vehiculo;
 	}
 
-    public function get_Patente(){
+    public function getPatente(){
 		return $this->patente;
 	}
 
@@ -22,11 +22,11 @@ class Vehiculo
 		$this->patente = $patente;
 	}
 
-    public function getModelo(){
-		return $this->Modelo;
+    public function getId_Modelo(){
+		return $this->id_Modelo;
 	}
 
-	public function setModelo($modelo){
-		$this->modelo = $modelo;
+	public function setId_Modelo($id_Modelo){
+		$this->id_Modelo = $id_Modelo;
 	}
 }
