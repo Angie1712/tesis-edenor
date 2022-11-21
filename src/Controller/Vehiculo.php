@@ -23,4 +23,19 @@ class VehiculoController
 
         return VehiculoDao::CreateVehiculo($obj_vehiculo);
     }
+
+    public static function Crud($patente){
+        $pvd = new Vehiculo();
+        $pvd-> setPatente($patente['Patente']);
+        $pvd->setId_Modelo($patente['modelo']);
+        
+        return VehiculoDao::Update($pvd);
+  }
+
+    public static function Listar($patente){
+        $pvd = new Vehiculo();
+        $pvd->setPatente($patente);
+
+        return VehiculoDao::Listar($pvd);
+    }
 }

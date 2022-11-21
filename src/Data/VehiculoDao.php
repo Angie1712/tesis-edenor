@@ -70,7 +70,6 @@ class VehiculoDao extends Database
 		}
 		public static function CreateVehiculo($vehiclo)
 		{	
-			print_r($vehiclo);
 			$query = "INSERT INTO Vehiculos 
 			(Patente,
 			id_Modelo) 
@@ -86,5 +85,52 @@ class VehiculoDao extends Database
 			}
 	
 			return false;
+		}
+
+		public static function Update($date)
+		{
+			try{
+				$query = "UPDATE Vehiculos
+				SET
+				id_modelo = :id_modelo
+				WHERE patente = :patente";
+				$resultado = self::$cnx->prepare($query);
+				$resultado->bindParam(":id_modelo",$date->getId_Modelo());
+				$resultado->bindParam(":patente", $date->getPatente());
+				$resultado->execute();
+			}catch (Exception $e)
+			{
+				die($e->getMessage());
+			}
+		}
+
+		public static function Listar($patente){
+			try
+		{
+			//Sentencia SQL para selección de datos utilizando
+			self::getDatabase();
+			$query = "SELECT
+			id_vehiculo,
+            Patente,
+            Modelo.Modelo,
+            Marca.Marca
+			FROM `Vehiculos`
+            JOIN Modelo ON Vehiculos.id_modelo = Modelo.id_modelo
+            JOIN Marca on Modelo.id_marca = Marca.id_marca
+			WHERE Patente = :patente";
+			$resultado = self::$cnx->prepare($query);
+			$resultado->bindParam(":patente", $patente->getPatente());
+			//Ejecución de la sentencia SQL.
+			$resultado->execute();
+			//fetchAll — Devuelve un array que contiene todas las filas del conjunto
+			//de resultados
+			return $resultado->fetch(PDO::FETCH_OBJ);
+	
+		}
+		catch(Exception $e)
+		{
+			//Obtener mensaje de error.
+			die($e->getMessage());
+		}
 		}
 }
