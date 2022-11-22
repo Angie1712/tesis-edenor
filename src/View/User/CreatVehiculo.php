@@ -9,7 +9,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $patente = ($_POST["patente"]);
         $id_modelo = ($_POST["id_modelo"]);
         if(VehiculoController::CreatVehiculo($patente, $id_modelo)){
-            echo'<script> window.location.href = "index.php"; </script>';
+            echo'<script> window.location.href = "Vehiculos.php"; </script>';
         }
     }
 }
