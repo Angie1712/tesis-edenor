@@ -38,4 +38,12 @@ class VehiculoController
 
         return VehiculoDao::Listar($pvd);
     }
+
+    public static function Delete($patente)
+    {
+        $pvd = new Vehiculo();
+        $pvd-> setPatente($patente);
+
+        return VehiculoDao::Delete($pvd);
+    }
 }
