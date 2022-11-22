@@ -25,6 +25,42 @@ require '../../Controller/Vehiculo.php'
 
     <!-- Custom styles for this template-->
     <link href="/Assets/css/sb-admin-2.css" rel="stylesheet">
+    <script language="JavaScript">
+    const eliminar = (patente) =>
+    {
+        Swal.fire({
+  title: '¿Estas Seguro?',
+  text: "No podras recuperar la indormación!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Si, eliminalo!', 
+  cancelButtonText: 'Cancelar'
+}).then((result) => {
+  if (result.isConfirmed) {
+      var url = "DeleteVehiculo.php"
+      var formdata = new FormData();
+      formdata.append('tipo_operacion', 'eliminar');
+      formdata.append('patente', patente);
+      fetch(url, {
+          method: 'post',
+          body: formdata
+      }).then(res => res.json())
+      .then(response =>{
+          console.log('Success:', response)
+          Swal.fire(
+          'Eliminado!',
+          'Su vehiculo se elimino.',
+          'success',
+           window.location.href = "Vehiculos.php"
+        )
+      })
+      .catch(error => console.error('Error:', error));
+  }
+})
+    }
+</script>
 
 </head>
 
@@ -190,6 +226,7 @@ require '../../Controller/Vehiculo.php'
                                             <td><?php echo $r->Marca; ?></td>
                                             <td>
                                                 <a href="Edit_vehiculo.php?Patente=<?php echo $r->Patente; ?>">Editar</a>
+                                                <button onclick="eliminar('<?php echo $r->Patente?>')"> Eliminar</button>
                                             </td>
                                         </tr>
                                         <?php endforeach;?>
@@ -237,6 +274,7 @@ require '../../Controller/Vehiculo.php'
     </div>
 
     <!-- Bootstrap core JavaScript-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="/Assets/vendor/jquery/jquery.min.js"></script>
     <script src="/Assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

@@ -133,4 +133,22 @@ class VehiculoDao extends Database
 			die($e->getMessage());
 		}
 		}
+
+		public static function Delete($patente){
+			try{
+				self::getDatabase();
+				$query = " DELETE 
+				FROM 
+				Vehiculos
+				WHERE Patente = :Patente";
+				$resultado = self::$cnx->prepare($query);
+				$resultado->bindParam(":Patente", $patente->getPatente());
+				$resultado->execute();
+				return $resultado->fetch(PDO::FETCH_OBJ);
+			}
+			catch(Exception $e)
+			{
+				die($e->getMessage());
+			}
+		}
 }
