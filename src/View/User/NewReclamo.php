@@ -1,7 +1,10 @@
 <?php
-require '../../Controller/Reclamo.php'
-?>
+require '../../Controller/Vehiculo.php';
+require '../../Controller/TipoReclamo.php';
 
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +16,7 @@ require '../../Controller/Reclamo.php'
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Reclamos</title>
+    <title>Vehiculos</title>
 
     <!-- Custom fonts for this template-->
     <link href="/Assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -147,62 +150,61 @@ require '../../Controller/Reclamo.php'
                     </ul>
 
                 </nav>
-                <h1><strong>Reclamos</strong></h1>
-                    <!-- <p class="mb-4">Crear Exámen<a target="_blank"
-                            href="register_exam3.php"></a>.</p> -->
-                            <a class="btn btn-success btn-sm" href="NewReclamo.php">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link me-1">
-                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">
-                                </path><polyline points="15 3 21 3 21 9"></polyline>
-                                <line x1="10" y1="14" x2="21" y2="3"></line>
-                            </svg>Crear Reclamo</a>
-                            <hr>
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Información de los Turnos</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                        <th style="width:180px;">Vehiculo</th>
-                                        <th style="width:120px;">Patente</th>
-                                        <th style="width:120px;">Tipo de Reclamo</th>
-                                        <th style="width:180px;">Reclamo</th>
-                                        <th style="width:120px;">Estado</th>
-                                        <th style="width:120px;">Fecha</th>
+                <h1><strong>Nuevo Reclamo</strong></h1>
+                <div class="container-fluid">
+    <form id="vehiculo" action="CreatReclamo.php" method="POST">
+        <div class="card">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Reclamo:</h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
 
-                                        
-                                        </tr>
-                                    </thead>
-                                    </tbody>
-                                    <tbody>
-                                        <?php foreach(ReclamoController::searchReclamo() as $r) : ?>
-                                        <tr>
-                                            <td><?php echo $r->Modelo; ?></td>
-                                            <td><?php echo $r->Patente; ?></td>
-                                            <td><?php echo $r->Tipo_reclamo; ?></td>
-                                            <td><?php echo $r->Reclamo; ?></td>
-                                            <td><?php echo "Terminado" ?></td>
-                                            <td><?php echo $r->fecha; ?></td>
-                                            <!-- <td>
-                                                <a href="Edit_vehiculo.php?Patente=<?php echo $r->Patente; ?>">Editar</a>
-                                                <button onclick="eliminar('<?php echo $r->Patente?>')"> Eliminar</button>
-                                            </td> -->
-                                        </tr>
-                                        <?php endforeach;?>
-                                    <tbody> 
-                                    
-                                       
-                                    </tbody>
-                                </table>
+                    <div class="col-lg-12">
+                        <div class="p-5">
+                            <!--<form class="user" id="form_step_1">-->
+                            <div class="form-group row">
+                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                <label for="exampleFormControlSelect1">Vehiculo</label>
+                                    <select method="post" name="Vehiculo" class="form-control" id="examCategory">
+                                        <?php foreach(VehiculoController::searchVehiculo() as $r) :?>
+                                            <?php var_dump($r); ?>
+                                        <option value=<?php echo $r->id_vehiculo;?>><?php echo $r->Patente; ?>
+                                        </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
                             </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-4 mb-3 mb-sm-0">
+                                            <label for="exampleFormControlSelect1">Tipo de Reclamo</label>
+                                            <select method="post" name="tipo_reclamo" class="form-control" id="examCategory">
+                                                <?php foreach(TiporeclamoController::searchTipoReclamo() as $r) :?>
+                                                    <?php var_dump($r); ?>
+                                                <option value=<?php echo $r->id_tipo_reclamo;?>><?php echo $r->Tipo_reclamo; ?>
+                                                </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label>Detalle :</label>
+                                        <br>
+                                        <textarea name="detalle" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        <br>
+                                    </div>
+                            <button class="btn btn-primary btn-user btn-block col-sm-1" type="submit">
+                                Continuar
+                            </button>
+                            <!--</form>-->
                         </div>
                     </div>
-
                 </div>
+            </div>
+        </div>
+    </form>
+</div>
+
             </div>
             <!-- End of Main Content -->
 
