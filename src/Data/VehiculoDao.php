@@ -27,8 +27,8 @@ class VehiculoDao extends Database
             Patente,
             Modelo.Modelo,
             Marca.Marca
-			FROM `Vehiculos`
-            JOIN Modelo ON Vehiculos.id_modelo = Modelo.id_modelo
+			FROM `Vehiculo`
+            JOIN Modelo ON Vehiculo.id_modelo = Modelo.id_modelo
             JOIN Marca on Modelo.id_marca = Marca.id_marca";
 			$resultado = self::$cnx->prepare($query);
 			//Ejecución de la sentencia SQL.
@@ -70,7 +70,7 @@ class VehiculoDao extends Database
 		}
 		public static function CreateVehiculo($vehiclo)
 		{	
-			$query = "INSERT INTO Vehiculos 
+			$query = "INSERT INTO Vehiculo
 			(Patente,
 			id_Modelo) 
 			VALUES
@@ -90,7 +90,7 @@ class VehiculoDao extends Database
 		public static function Update($date)
 		{
 			try{
-				$query = "UPDATE Vehiculos
+				$query = "UPDATE Vehiculo
 				SET
 				id_modelo = :id_modelo
 				WHERE patente = :patente";
@@ -114,8 +114,8 @@ class VehiculoDao extends Database
             Patente,
             Modelo.Modelo,
             Marca.Marca
-			FROM `Vehiculos`
-            JOIN Modelo ON Vehiculos.id_modelo = Modelo.id_modelo
+			FROM `Vehiculo`
+            JOIN Modelo ON Vehiculo.id_modelo = Modelo.id_modelo
             JOIN Marca on Modelo.id_marca = Marca.id_marca
 			WHERE Patente = :patente";
 			$resultado = self::$cnx->prepare($query);
@@ -139,7 +139,7 @@ class VehiculoDao extends Database
 				self::getDatabase();
 				$query = " DELETE 
 				FROM 
-				Vehiculos
+				Vehiculo
 				WHERE Patente = :Patente";
 				$resultado = self::$cnx->prepare($query);
 				$resultado->bindParam(":Patente", $patente->getPatente());
