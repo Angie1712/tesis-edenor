@@ -16,11 +16,11 @@ if(isset($_POST["legajo"])&& isset($_POST["dni"])){
 
     if(UserController::loginUser($txtDni, $txtLegajo))
     {
-        $user = UserController::getUser($txtDni, $txtLegajo);
-        $_SESSION["dni"] = array(
-            "id"       => $user->id_user,
-            "username" => $user->user,
-            "role"     => $user->id_rol
+        $user = UserController::getUser($txtLegajo); 
+        $_SESSION["user"] = array(
+            "id"    => $user->id_user,
+            "name"  => $user->Name,
+            "role"  => $user->id_rol
             ); 
         return print (json_encode($resultado));
     }

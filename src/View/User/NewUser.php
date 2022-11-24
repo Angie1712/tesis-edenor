@@ -9,8 +9,7 @@ if($_SESSION["user"]["role"] !== '1'|| $_SESSION["user"]["role"] !== '2'){
 }else {
     echo "<script> window.location='logout.php'; </script>";
 }
-require '../../Controller/Modelo.php';
-require '../../Controller/Marca.php';
+require '../../Controller/Rol.php';
 
 
 ?>
@@ -25,7 +24,7 @@ require '../../Controller/Marca.php';
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Nueva Marca</title>
+    <title>Nuevo Usuarios</title>
 
     <!-- Custom fonts for this template-->
     <link href="/Assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -176,12 +175,12 @@ require '../../Controller/Marca.php';
             </ul>
 
         </nav>
-                <h1><strong>Nuevo Modelo: </strong></h1>
+                <h1><strong>Nuevo Usuario: </strong></h1>
                 <div class="container-fluid">
-    <form id="vehiculo" action="CreatModelo.php" method="POST">
+    <form id="vehiculo" action="CreatUser.php" method="POST">
         <div class="card">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Agregar Modelo</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Agregar Usuario</h6>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -190,17 +189,42 @@ require '../../Controller/Marca.php';
                         <div class="p-5">
                             <div class="form-group row">
                                 <div class="col-sm-4 mb-3 mb-sm-0">
-                                    <label for="exampleFormControlSelect1">Nombre del Modelo:</label>
-                                    <input type="text" name="modelo" class="form-control" id="examName">
+                                    <label for="exampleFormControlSelect1">Nombre:</label>
+                                    <input type="text" name="name" class="form-control" id="examName">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                    <label for="exampleFormControlSelect1">Apellido:</label>
+                                    <input type="text" name="surname" class="form-control" id="examName">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                    <label for="exampleFormControlSelect1">Email:</label>
+                                    <input type="text" name="email" class="form-control" id="examName">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                    <label for="exampleFormControlSelect1">DNI:</label>
+                                    <input type="text" name="dni" class="form-control" id="examName">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                    <label for="exampleFormControlSelect1">Legajo:</label>
+                                    <input type="text" name="legajo" class="form-control" id="examName">
                                 </div>
                             </div>
                             <div class="form-group row">
                                         <div class="col-sm-4 mb-3 mb-sm-0">
-                                            <label for="exampleFormControlSelect1">Marca:</label>
-                                            <select method="post" name="id_marca" class="form-control" id="examCategory"
+                                            <label for="exampleFormControlSelect1">Tipo de usuario:</label>
+                                            <select method="post" name="id_rol" class="form-control" id="examCategory"
                                                 onchange=setQuestion(this.value)>
-                                                <?php foreach(MarcaController::searchMarca() as $r) :?>
-                                                <option value=<?php echo $r->id_marca;?>><?php echo $r->Marca; ?>
+                                                <?php foreach(RolController::searchRol() as $r) :?>
+                                                    <?php print_r($r);?>
+                                                <option value=<?php echo $r->id_rol;?>><?php echo $r->detail_rol; ?>
                                                 </option>
                                                 <?php endforeach; ?>
                                             </select>

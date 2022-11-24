@@ -1,3 +1,14 @@
+<?php
+session_start();
+if(!isset($_SESSION["user"]))
+{ 
+    echo "<script> window.location='logout.php'; </script>";
+}
+if($_SESSION["user"]["role"] !== '1'|| $_SESSION["user"]["role"] !== '2'){
+}else {
+    echo "<script> window.location='logout.php'; </script>";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,6 +53,7 @@
                 <a class="nav-link" href="Reclamos.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Mis Reclamos</span></a>
+            <?php if($_SESSION["user"]["role"] == 1) {?>
             <li class="nav-item">
                 <a class="nav-link" href="Vehiculos.php">
                     <i class="fas fa-fw fa-chart-area"></i>
@@ -57,6 +69,12 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Modelo</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Usuarios.php">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Usuarios</span></a>
+            </li>
+            <?php }?>
 
         </ul>
         <!-- End of Sidebar -->
@@ -120,9 +138,6 @@
                         
 
                         <!-- Nav Item - Messages -->
-
-                        <div class="topbar-divider d-none d-sm-block"></div>
-
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"

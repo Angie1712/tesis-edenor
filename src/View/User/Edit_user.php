@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 if(!isset($_SESSION["user"]))
@@ -9,10 +10,18 @@ if($_SESSION["user"]["role"] !== '1'|| $_SESSION["user"]["role"] !== '2'){
 }else {
     echo "<script> window.location='logout.php'; </script>";
 }
-require '../../Controller/Modelo.php';
-require '../../Controller/Marca.php';
+include '../../Controller/User.php';
+include '../../Controller/Rol.php';
 
+if(isset($_REQUEST['id_user'])){
+    $user = $_REQUEST['id_user'];
+    $pvd = UserController::Listar($user);
+}
 
+if(isset($_POST['id_user'])){
+    UserController::Crud($_POST);
+    echo "<script>location.href='Edit_user.php?id_user=".$_REQUEST['id_user']."';</script>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +34,7 @@ require '../../Controller/Marca.php';
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Nueva Marca</title>
+    <title>Ediatr Usuarios</title>
 
     <!-- Custom fonts for this template-->
     <link href="/Assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -176,58 +185,54 @@ require '../../Controller/Marca.php';
             </ul>
 
         </nav>
-                <h1><strong>Nuevo Modelo: </strong></h1>
-                <div class="container-fluid">
-    <form id="vehiculo" action="CreatModelo.php" method="POST">
-        <div class="card">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Agregar Modelo</h6>
-            </div>
-            <div class="card-body">
-                <div class="row">
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
 
-                    <div class="col-lg-12">
-                        <div class="p-5">
-                            <div class="form-group row">
-                                <div class="col-sm-4 mb-3 mb-sm-0">
-                                    <label for="exampleFormControlSelect1">Nombre del Modelo:</label>
-                                    <input type="text" name="modelo" class="form-control" id="examName">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                        <div class="col-sm-4 mb-3 mb-sm-0">
-                                            <label for="exampleFormControlSelect1">Marca:</label>
-                                            <select method="post" name="id_marca" class="form-control" id="examCategory"
-                                                onchange=setQuestion(this.value)>
-                                                <?php foreach(MarcaController::searchMarca() as $r) :?>
-                                                <option value=<?php echo $r->id_marca;?>><?php echo $r->Marca; ?>
-                                                </option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                            <button class="btn btn-primary btn-user btn-block col-sm-1" type="submit">
-                                Continuar
-                            </button>
-                        </div>
-                    </div>
+                <!-- Page Heading -->
+                    <h1><strong>Editar Usuarios: </strong></h1>
+                    <br>
+            <form id="frm-persona" action="?id_user=<?php echo $_REQUEST['id_user']?>" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="id_user" value="<?php echo $pvd->id_user; ?>" />
+                <label>Nombre: </label>
+                <br>
+                <input name="name" value="<?php echo $pvd->Name; ?>" /> 
+                <br>
+                <br>
+                <label>Apellido: </label>
+                <br>
+                <input name="surname" value="<?php echo $pvd->Surname; ?>" /> 
+                <br>
+                <br>
+                <label>Email: </label>
+                <br>
+                <input name="email" value="<?php echo $pvd->email; ?>" /> 
+                <br>
+                <br>
+                <label>Rol</label>
+                <br>
+                <select name="id_rol" class="form-select styled-select" aria-label="Default select example">
+                    <?php 
+                    foreach(RolDao::searchRol() as $r) :
+                    $selected = ($pvd->detail_rol == $r->detail_rol) ? "selected": '';
+                    ?>
+                    <option 
+                        value='<?php echo $r->id_rol;?>' 
+                        <?php echo $selected;?> 
+                    >
+                        <?php echo $r->detail_rol;?>
+                    </option>
+                    <?php endforeach; ?>
+                </select>
+                <br>
+                <br>
+                <div class="buttons">
+                <button class="btn btn-outline-primary px-4" type="submit">Actualizar</button>
                 </div>
-            </div>
+            </form>
         </div>
-    </form>
-</div>
 
-            </div>
-            <!-- End of Main Content -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
 
