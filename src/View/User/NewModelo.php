@@ -1,6 +1,6 @@
 <?php
-require '../../Controller/Modelo.php'
-
+require '../../Controller/Modelo.php';
+require '../../Controller/Marca.php';
 
 
 ?>
@@ -15,7 +15,7 @@ require '../../Controller/Modelo.php'
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Modelos</title>
+    <title>Nueva Marca</title>
 
     <!-- Custom fonts for this template-->
     <link href="/Assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -25,42 +25,6 @@ require '../../Controller/Modelo.php'
 
     <!-- Custom styles for this template-->
     <link href="/Assets/css/sb-admin-2.css" rel="stylesheet">
-    <script language="JavaScript">
-    const eliminar = (id_modelo) =>
-    {
-        Swal.fire({
-  title: '¿Estas Seguro?',
-  text: "No podras recuperar la indormación!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Si, eliminalo!', 
-  cancelButtonText: 'Cancelar'
-}).then((result) => {
-  if (result.isConfirmed) {
-      var url = "DeleteModelo.php"
-      var formdata = new FormData();
-      formdata.append('tipo_operacion', 'eliminar');
-      formdata.append('id_modelo', id_modelo);
-      fetch(url, {
-          method: 'post',
-          body: formdata
-      }).then(res => res.json())
-      .then(response =>{
-          console.log('Success:', response)
-          Swal.fire(
-          'Eliminado!',
-          'Su vehiculo se elimino.',
-          'success',
-           window.location.href = "Modelo.php"
-        )
-      })
-      .catch(error => console.error('Error:', error));
-  }
-})
-    }
-</script>
 
 </head>
 
@@ -89,6 +53,7 @@ require '../../Controller/Modelo.php'
                 <a class="nav-link" href="Vehiculos.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Vehiculos</span></a>
+            </li>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="Marca.php">
@@ -193,59 +158,50 @@ require '../../Controller/Modelo.php'
                         </li>
 
                     </ul>
-                   
+
                 </nav>
-                
+                <h1><strong>Nuevo Modelo: </strong></h1>
                 <div class="container-fluid">
-                <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                        
-                <h1><strong>Modelos</strong></h1>
-                            <a class="btn btn-success btn-sm" href="NewModelo.php">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link me-1">
-                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">
-                                </path><polyline points="15 3 21 3 21 9"></polyline>
-                                <line x1="10" y1="14" x2="21" y2="3"></line>
-                            </svg>Añadir Modelo</a>
-                            <hr>
-                            <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Información de las Marcas</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                        <th style="width:120px;">Modelo</th>
-                                        <th style="width:120px;">Marca</th>
-                                        <th style="width:120px;">Editar</th>
-                                        </tr>
-                                    </thead>
-                                    </tbody>
-                                    <tbody>
-                                        <?php foreach(ModeloController::searchModelo() as $r) : ?>
-                                        <tr>
-                                            <td><?php echo $r->Modelo; ?></td>
-                                            <td><?php echo $r->Marca; ?></td>
-                                            <td>
-                                                <a href="Edit_modelo.php?id_modelo=<?php echo $r->id_modelo; ?>">Editar</a>
-                                                <button onclick="eliminar('<?php echo $r->id_modelo?>')"> Eliminar</button>
-                                            </td>
-                                        </tr>
-                                        <?php endforeach;?>
-                                    </tbody>
-                                </table>
+    <form id="vehiculo" action="CreatModelo.php" method="POST">
+        <div class="card">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Agregar Modelo</h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="p-5">
+                            <div class="form-group row">
+                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                    <label for="exampleFormControlSelect1">Nombre del Modelo:</label>
+                                    <input type="text" name="modelo" class="form-control" id="examName">
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                        <div class="col-sm-4 mb-3 mb-sm-0">
+                                            <label for="exampleFormControlSelect1">Marca:</label>
+                                            <select method="post" name="id_marca" class="form-control" id="examCategory"
+                                                onchange=setQuestion(this.value)>
+                                                <?php foreach(MarcaController::searchMarca() as $r) :?>
+                                                <option value=<?php echo $r->id_marca;?>><?php echo $r->Marca; ?>
+                                                </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                            <button class="btn btn-primary btn-user btn-block col-sm-1" type="submit">
+                                Continuar
+                            </button>
                         </div>
                     </div>
-
-                    </div>     
-
                 </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+            </div>
             <!-- End of Main Content -->
 
         </div>
@@ -280,7 +236,6 @@ require '../../Controller/Modelo.php'
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="/Assets/vendor/jquery/jquery.min.js"></script>
     <script src="/Assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
