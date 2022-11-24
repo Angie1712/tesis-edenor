@@ -542,11 +542,11 @@ schlix:
     - schlix
   label: SCHLIX
   url: 'http://schlix.com'
-Buscar-eng-in:
+search-eng-in:
   icons:
-    -Buscarengin
-  label:BuscarEng.in
-  url: 'http://Buscareng.in'
+    - searchengin
+  label: SearchEng.in
+  url: 'http://searcheng.in'
 service-stack:
   icons:
     - servicestack
@@ -623,8 +623,8 @@ supple:
     - mail-bulk
     - poll
     - poll-h
-    -Buscar-dollar
-    -Buscar-location
+    - search-dollar
+    - search-location
     - supple
   label: Supple
   url: 'https://supple.com.au'

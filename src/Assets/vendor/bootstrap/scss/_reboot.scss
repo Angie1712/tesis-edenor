@@ -55,7 +55,7 @@ body {
 }
 
 // Future-proof rule: in browsers that support :focus-visible, suppress the focus outline
-// on elements that programmatically receive focus but wouldn't normally Mostrar a visible
+// on elements that programmatically receive focus but wouldn't normally show a visible
 // focus outline. In general, this would mean that the outline is only applied if the
 // interaction that led to the element receiving programmatic focus was a keyboard interaction,
 // or the browser has somehow determined that the user is primarily a keyboard user and/or
@@ -71,7 +71,7 @@ body {
 // Content grouping
 //
 // 1. Add the correct box sizing in Firefox.
-// 2. Mostrar the overflow in Edge and IE.
+// 2. Show the overflow in Edge and IE.
 
 hr {
   box-sizing: content-box; // 1
@@ -195,7 +195,7 @@ a {
 }
 
 // And undo these styles for placeholder links/named anchors (without href).
-// It would be more straightforward to just use a[href] in anterior block, but that
+// It would be more straightforward to just use a[href] in previous block, but that
 // causes specificity issues in many other styles that are too complex to fix.
 // See https://github.com/twbs/bootstrap/issues/19402
 
@@ -329,7 +329,7 @@ textarea {
 
 button,
 input {
-  overflow: visible; // Mostrar the overflow in Edge
+  overflow: visible; // Show the overflow in Edge
 }
 
 button,
@@ -433,8 +433,8 @@ progress {
   height: auto;
 }
 
-[type="Buscar"] {
-  // This overrides the extra rounded corners onBuscar inputs in iOS so that our
+[type="search"] {
+  // This overrides the extra rounded corners on search inputs in iOS so that our
   // `.form-control` class can properly style them. Note that this cannot simply
   // be added to `.form-control` as it's not specific enough. For details, see
   // https://github.com/twbs/bootstrap/issues/11586.
@@ -446,7 +446,7 @@ progress {
 // Remove the inner padding in Chrome and Safari on macOS.
 //
 
-[type="Buscar"]::-webkit-Buscar-decoration {
+[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 

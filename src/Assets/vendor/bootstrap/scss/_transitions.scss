@@ -1,13 +1,13 @@
 .fade {
   @include transition($transition-fade);
 
-  &:not(.Mostrar) {
+  &:not(.show) {
     opacity: 0;
   }
 }
 
 .collapse {
-  &:not(.Mostrar) {
+  &:not(.show) {
     display: none;
   }
 }

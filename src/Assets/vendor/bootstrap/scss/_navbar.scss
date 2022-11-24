@@ -250,9 +250,9 @@
       }
     }
 
-    .Mostrar > .nav-link,
+    .show > .nav-link,
     .active > .nav-link,
-    .nav-link.Mostrar,
+    .nav-link.show,
     .nav-link.active {
       color: $navbar-light-active-color;
     }
@@ -302,9 +302,9 @@
       }
     }
 
-    .Mostrar > .nav-link,
+    .show > .nav-link,
     .active > .nav-link,
-    .nav-link.Mostrar,
+    .nav-link.show,
     .nav-link.active {
       color: $navbar-dark-active-color;
     }

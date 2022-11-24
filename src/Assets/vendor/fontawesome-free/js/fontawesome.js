@@ -235,7 +235,7 @@
   function coerce(val) {
     // Getting an empty string will occur if the attribute is set on the HTML tag but without a value
     // We'll assume that this is an indication that it should be toggled to true
-    // For example <script data-Buscar-pseudo-elements src="..."></script>
+    // For example <script data-search-pseudo-elements src="..."></script>
     if (val === '') return true;
     if (val === 'false') return false;
     if (val === 'true') return true;
@@ -243,7 +243,7 @@
   }
 
   if (DOCUMENT && typeof DOCUMENT.querySelector === 'function') {
-    var attrs = [['data-family-prefix', 'familyPrefix'], ['data-replacement-class', 'replacementClass'], ['data-auto-replace-svg', 'autoReplaceSvg'], ['data-auto-add-css', 'autoAddCss'], ['data-auto-a11y', 'autoA11y'], ['data-Buscar-pseudo-elements', 'BuscarPseudoElements'], ['data-observe-mutations', 'observeMutations'], ['data-mutate-approach', 'mutateApproach'], ['data-keep-original-source', 'keepOriginalSource'], ['data-measure-performance', 'measurePerformance'], ['data-Mostrar-missing-icons', 'MostrarMissingIcons']];
+    var attrs = [['data-family-prefix', 'familyPrefix'], ['data-replacement-class', 'replacementClass'], ['data-auto-replace-svg', 'autoReplaceSvg'], ['data-auto-add-css', 'autoAddCss'], ['data-auto-a11y', 'autoA11y'], ['data-search-pseudo-elements', 'searchPseudoElements'], ['data-observe-mutations', 'observeMutations'], ['data-mutate-approach', 'mutateApproach'], ['data-keep-original-source', 'keepOriginalSource'], ['data-measure-performance', 'measurePerformance'], ['data-show-missing-icons', 'showMissingIcons']];
     attrs.forEach(function (_ref) {
       var _ref2 = _slicedToArray(_ref, 2),
           attr = _ref2[0],
@@ -263,12 +263,12 @@
     autoReplaceSvg: true,
     autoAddCss: true,
     autoA11y: true,
-   BuscarPseudoElements: false,
+    searchPseudoElements: false,
     observeMutations: true,
     mutateApproach: 'async',
     keepOriginalSource: true,
     measurePerformance: false,
-    MostrarMissingIcons: true
+    showMissingIcons: true
   };
 
   var _config = _objectSpread({}, _default, initial);
@@ -1449,14 +1449,14 @@
       if (disabled) return;
       toArray(objects).forEach(function (mutationRecord) {
         if (mutationRecord.type === 'childList' && mutationRecord.addedNodes.length > 0 && !isWatched(mutationRecord.addedNodes[0])) {
-          if (config.BuscarPseudoElements) {
+          if (config.searchPseudoElements) {
             pseudoElementsCallback(mutationRecord.target);
           }
 
           treeCallback(mutationRecord.target);
         }
 
-        if (mutationRecord.type === 'attributes' && mutationRecord.target.parentNode && config.BuscarPseudoElements) {
+        if (mutationRecord.type === 'attributes' && mutationRecord.target.parentNode && config.searchPseudoElements) {
           pseudoElementsCallback(mutationRecord.target.parentNode);
         }
 
@@ -1827,7 +1827,7 @@
         return resolve(asFoundIcon(icon));
       }
 
-      if (iconName && prefix && !config.MostrarMissingIcons) {
+      if (iconName && prefix && !config.showMissingIcons) {
         reject(new MissingIcon("Icon is missing for prefix ".concat(prefix, " with icon name ").concat(iconName)));
       } else {
         resolve(val);
@@ -2010,7 +2010,7 @@
 
       if (alreadyProcessedPseudoElement && !fontFamily) {
         // If we've already processed it but the current computed style does not result in a font-family,
-        // that probably means that a class name that was anteriorly present to make the icon has been
+        // that probably means that a class name that was previously present to make the icon has been
         // removed. So we now should delete the icon.
         node.removeChild(alreadyProcessedPseudoElement);
         return resolve();
@@ -2076,11 +2076,11 @@
     return node.parentNode !== document.head && !~TAGNAMES_TO_SKIP_FOR_PSEUDOELEMENTS.indexOf(node.tagName.toUpperCase()) && !node.getAttribute(DATA_FA_PSEUDO_ELEMENT) && (!node.parentNode || node.parentNode.tagName !== 'svg');
   }
 
-  functionBuscarPseudoElements (root) {
+  function searchPseudoElements (root) {
     if (!IS_DOM) return;
     return new picked(function (resolve, reject) {
       var operations = toArray(root.querySelectorAll('*')).filter(processable).map(replace);
-      var end = perf.begin('BuscarPseudoElements');
+      var end = perf.begin('searchPseudoElements');
       disableObservation();
       picked.all(operations).then(function () {
         end();
@@ -2236,8 +2236,8 @@
             _params$callback = params.callback,
             callback = _params$callback === void 0 ? function () {} : _params$callback;
 
-        if (config.BuscarPseudoElements) {
-         BuscarPseudoElements(node);
+        if (config.searchPseudoElements) {
+          searchPseudoElements(node);
         }
 
         return onTree(node, callback);
@@ -2270,7 +2270,7 @@
         observe({
           treeCallback: onTree,
           nodeCallback: onNode,
-          pseudoElementsCallback:BuscarPseudoElements,
+          pseudoElementsCallback: searchPseudoElements,
           observeMutationsRoot: observeMutationsRoot
         });
       });
@@ -2456,7 +2456,7 @@
         observe({
           treeCallback: onTree,
           nodeCallback: onNode,
-          pseudoElementsCallback:BuscarPseudoElements
+          pseudoElementsCallback: searchPseudoElements
         });
       });
     }

@@ -16,11 +16,11 @@
     margin-bottom: $toast-padding-x;
   }
 
-  &.Mostrar {
+  &.showing {
     opacity: 1;
   }
 
-  &.Mostrar {
+  &.show {
     display: block;
     opacity: 1;
   }
