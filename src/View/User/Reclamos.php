@@ -88,6 +88,16 @@ require '../../Controller/Reclamo.php'
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Vehiculos</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Marca.php">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Marca</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Modelo.php">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Modelo</span></a>
+            </li>
 
         </ul>
         <!-- End of Sidebar -->

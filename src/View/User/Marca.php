@@ -1,5 +1,5 @@
 <?php
-require '../../Controller/Vehiculo.php'
+require '../../Controller/Marca.php'
 
 
 
@@ -15,7 +15,7 @@ require '../../Controller/Vehiculo.php'
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Vehiculos</title>
+    <title>Marca</title>
 
     <!-- Custom fonts for this template-->
     <link href="/Assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -26,7 +26,7 @@ require '../../Controller/Vehiculo.php'
     <!-- Custom styles for this template-->
     <link href="/Assets/css/sb-admin-2.css" rel="stylesheet">
     <script language="JavaScript">
-    const eliminar = (patente) =>
+    const eliminar = (id_marca) =>
     {
         Swal.fire({
   title: '¿Estas Seguro?',
@@ -39,10 +39,10 @@ require '../../Controller/Vehiculo.php'
   cancelButtonText: 'Cancelar'
 }).then((result) => {
   if (result.isConfirmed) {
-      var url = "DeleteVehiculo.php"
+      var url = "DeleteMarca.php"
       var formdata = new FormData();
       formdata.append('tipo_operacion', 'eliminar');
-      formdata.append('patente', patente);
+      formdata.append('id_marca', id_marca);
       fetch(url, {
           method: 'post',
           body: formdata
@@ -53,7 +53,7 @@ require '../../Controller/Vehiculo.php'
           'Eliminado!',
           'Su vehiculo se elimino.',
           'success',
-           window.location.href = "Vehiculos.php"
+           window.location.href = "Marca.php"
         )
       })
       .catch(error => console.error('Error:', error));
@@ -200,15 +200,13 @@ require '../../Controller/Vehiculo.php'
                 <div class="card shadow mb-4">
                 <div class="card-header py-3">
                         
-                <h1><strong>Vehiculos</strong></h1>
-                    <!-- <p class="mb-4">Crear Exámen<a target="_blank"
-                            href="register_exam3.php"></a>.</p> -->
-                            <a class="btn btn-success btn-sm" href="NewVehiculo.php">
+                <h1><strong>Marcas</strong></h1>
+                            <a class="btn btn-success btn-sm" href="NewMarca.php">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link me-1">
                                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">
                                 </path><polyline points="15 3 21 3 21 9"></polyline>
                                 <line x1="10" y1="14" x2="21" y2="3"></line>
-                            </svg>Añadir Vehiculo</a>
+                            </svg>Añadir Marca</a>
                             <hr>
                             <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -221,22 +219,18 @@ require '../../Controller/Vehiculo.php'
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                        <th style="width:120px;">Patente</th>
-                                        <th style="width:180px;">Modelo</th>
                                         <th style="width:120px;">Marca</th>
                                         <th style="width:120px;">Editar</th>
                                         </tr>
                                     </thead>
                                     </tbody>
                                     <tbody>
-                                        <?php foreach(VehiculoController::searchVehiculo() as $r) : ?>
+                                        <?php foreach(MarcaController::searchMarca() as $r) : ?>
                                         <tr>
-                                            <td><?php echo $r->Patente; ?></td>
-                                            <td><?php echo $r->Modelo; ?></td>
                                             <td><?php echo $r->Marca; ?></td>
                                             <td>
-                                                <a href="Edit_vehiculo.php?Patente=<?php echo $r->Patente; ?>">Editar</a>
-                                                <button onclick="eliminar('<?php echo $r->Patente?>')"> Eliminar</button>
+                                                <a href="Edit_marca.php?id_marca=<?php echo $r->id_marca; ?>">Editar</a>
+                                                <button onclick="eliminar('<?php echo $r->id_marca?>')"> Eliminar</button>
                                             </td>
                                         </tr>
                                         <?php endforeach;?>
