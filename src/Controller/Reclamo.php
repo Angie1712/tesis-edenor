@@ -1,6 +1,7 @@
 <?php
 
 include '../../Data/ReclamoDao.php';
+require_once '../../Entity/Vehiculo.php';
 
 class ReclamoController{
 
@@ -21,4 +22,19 @@ class ReclamoController{
         return ReclamoDao::SearchReclamo();
     }
 
+    public static function Listar($id_Reclamo){
+        $pvd = new Reclamo();
+        $pvd->setId_Reclamo($id_Reclamo);
+
+        return ReclamoDao::Listar($pvd);
+    }
+
+    public static function Crud($id_Reclamo){
+        $pvd = new Reclamo();
+        $pvd->setId_Reclamo($id_Reclamo['id_Reclamo']);
+        $pvd->setId_tipo_reclamo($id_Reclamo['tipo_reclamo']);
+        $pvd->setId_estado($id_Reclamo['estado']);
+        
+        return ReclamoDao::Update($pvd);
+  }
 }

@@ -151,4 +151,6 @@ class VehiculoDao extends Database
 				die($e->getMessage());
 			}
 		}
+
+		
 }
