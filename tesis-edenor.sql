@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 07-11-2022 a las 12:29:40
+-- Tiempo de generación: 24-11-2022 a las 00:28:40
 -- Versión del servidor: 5.7.39
 -- Versión de PHP: 8.0.15
 
@@ -20,6 +20,25 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `tesis-edenor`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Estado`
+--
+
+CREATE TABLE `Estado` (
+  `id_estado` int(11) NOT NULL,
+  `detail_estado` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `Estado`
+--
+
+INSERT INTO `Estado` (`id_estado`, `detail_estado`) VALUES
+(1, 'En proceso'),
+(2, 'Terminado');
 
 -- --------------------------------------------------------
 
@@ -156,16 +175,26 @@ INSERT INTO `Modelo` (`id_modelo`, `Modelo`, `id_marca`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Reclamo`
+-- Estructura de tabla para la tabla `Reclamos`
 --
 
-CREATE TABLE `Reclamo` (
+CREATE TABLE `Reclamos` (
   `id_Reclamo` int(11) NOT NULL,
   `Reclamo` varchar(255) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_vehiculo` int(11) NOT NULL,
-  `id_tipo_reclamo` int(11) NOT NULL
+  `id_tipo_reclamo` int(11) NOT NULL,
+  `fecha` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `id_estado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `Reclamos`
+--
+
+INSERT INTO `Reclamos` (`id_Reclamo`, `Reclamo`, `id_user`, `id_vehiculo`, `id_tipo_reclamo`, `fecha`, `id_estado`) VALUES
+(1, 'Falla freno', 1, 1, 1, '2022-11-23 13:44:56', 1),
+(5, '', 1, 2, 2, '2022-11-23 20:55:03', 2);
 
 -- --------------------------------------------------------
 
@@ -232,18 +261,32 @@ INSERT INTO `Users` (`id_user`, `Name`, `Surname`, `email`, `id_rol`, `Legajo`, 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Vehiculos`
+-- Estructura de tabla para la tabla `Vehiculo`
 --
 
-CREATE TABLE `Vehiculos` (
+CREATE TABLE `Vehiculo` (
   `id_vehiculo` int(11) NOT NULL,
   `Patente` varchar(100) NOT NULL,
   `id_modelo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Volcado de datos para la tabla `Vehiculo`
+--
+
+INSERT INTO `Vehiculo` (`id_vehiculo`, `Patente`, `id_modelo`) VALUES
+(2, 'SRQ729', 5),
+(3, 'FOO196', 6);
+
+--
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `Estado`
+--
+ALTER TABLE `Estado`
+  ADD PRIMARY KEY (`id_estado`);
 
 --
 -- Indices de la tabla `Marca`
@@ -259,12 +302,10 @@ ALTER TABLE `Modelo`
   ADD KEY `fk_marca` (`id_marca`);
 
 --
--- Indices de la tabla `Reclamo`
+-- Indices de la tabla `Reclamos`
 --
-ALTER TABLE `Reclamo`
-  ADD KEY `FK_RECLAMO` (`id_user`),
-  ADD KEY `id_vehiculo` (`id_vehiculo`),
-  ADD KEY `FK_RECLAMO_reclamo` (`id_tipo_reclamo`);
+ALTER TABLE `Reclamos`
+  ADD PRIMARY KEY (`id_Reclamo`);
 
 --
 -- Indices de la tabla `Rol`
@@ -286,15 +327,20 @@ ALTER TABLE `Users`
   ADD KEY `FK_ROL` (`id_rol`);
 
 --
--- Indices de la tabla `Vehiculos`
+-- Indices de la tabla `Vehiculo`
 --
-ALTER TABLE `Vehiculos`
-  ADD PRIMARY KEY (`id_vehiculo`),
-  ADD KEY `FK_MODELO` (`id_modelo`);
+ALTER TABLE `Vehiculo`
+  ADD PRIMARY KEY (`id_vehiculo`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `Estado`
+--
+ALTER TABLE `Estado`
+  MODIFY `id_estado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `Marca`
@@ -309,6 +355,12 @@ ALTER TABLE `Modelo`
   MODIFY `id_modelo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
+-- AUTO_INCREMENT de la tabla `Reclamos`
+--
+ALTER TABLE `Reclamos`
+  MODIFY `id_Reclamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT de la tabla `Rol`
 --
 ALTER TABLE `Rol`
@@ -321,6 +373,12 @@ ALTER TABLE `Users`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de la tabla `Vehiculo`
+--
+ALTER TABLE `Vehiculo`
+  MODIFY `id_vehiculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- Restricciones para tablas volcadas
 --
 
@@ -331,25 +389,10 @@ ALTER TABLE `Modelo`
   ADD CONSTRAINT `FK_MARCA` FOREIGN KEY (`id_marca`) REFERENCES `Marca` (`id_marca`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `Reclamo`
---
-ALTER TABLE `Reclamo`
-  ADD CONSTRAINT `FK_RECLAMO` FOREIGN KEY (`id_user`) REFERENCES `Users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `reclamo_ibfk_1` FOREIGN KEY (`id_vehiculo`) REFERENCES `Vehiculos` (`id_vehiculo`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `reclamo_ibfk_2` FOREIGN KEY (`id_tipo_reclamo`) REFERENCES `Tipo_reclamo` (`id_tipo_reclamo`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Filtros para la tabla `Users`
 --
 ALTER TABLE `Users`
   ADD CONSTRAINT `FK_ROL` FOREIGN KEY (`id_rol`) REFERENCES `Rol` (`id_rol`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `Vehiculos`
---
-ALTER TABLE `Vehiculos`
-  ADD CONSTRAINT `FK_MODELO` FOREIGN KEY (`id_modelo`) REFERENCES `Modelo` (`id_modelo`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `vehiculos_ibfk_1` FOREIGN KEY (`id_vehiculo`) REFERENCES `Reclamo` (`id_vehiculo`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
