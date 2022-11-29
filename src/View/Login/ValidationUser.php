@@ -20,7 +20,11 @@ if(isset($_POST["legajo"])&& isset($_POST["dni"])){
         $_SESSION["user"] = array(
             "id"    => $user->id_user,
             "name"  => $user->Name,
-            "role"  => $user->id_rol
+            "role"  => $user->id_rol,
+            "surname" => $user->Surname,
+            "email" => $user->email,
+            "Legajo" => $user->Legajo,
+            "dni" => $user->dni
             ); 
         return print (json_encode($resultado));
     }
