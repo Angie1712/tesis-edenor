@@ -210,6 +210,9 @@ require '../../Controller/Reclamo.php'
             </ul>
 
         </nav>
+        <div class="container-fluid">
+                <div class="card shadow mb-4">
+                <div class="card-header py-3">
                 <h1><strong>Reclamos</strong></h1>
                     <!-- <p class="mb-4">Crear Exámen<a target="_blank"
                             href="register_exam3.php"></a>.</p> -->
