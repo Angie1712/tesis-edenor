@@ -251,7 +251,7 @@ require '../../Controller/Reclamo.php'
                                             <td><?php echo $r->Patente; ?></td>
                                             <td><?php echo $r->Tipo_reclamo; ?></td>
                                             <td><?php echo $r->Reclamo; ?></td>
-                                            <td><?php echo "Terminado" ?></td>
+                                            <td><?php echo $r->detail_estado ?></td>
                                             <td><?php echo $r->fecha; ?></td>
                                             <?php if($_SESSION["user"]["role"] == 1) {?>
                                             <td>
