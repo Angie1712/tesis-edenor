@@ -69,6 +69,31 @@ class ReclamoDao extends Database{
 			//de resultados
 			return $resultado->fetchAll(PDO::FETCH_OBJ);
         }
+		public static function SearchReclamoAdmin()
+        {
+            self::getDatabase();
+            $query="SELECT 
+			id_Reclamo,
+            Reclamo,
+			id_user,
+            Vehiculo.id_modelo,
+            Modelo.Modelo,
+            Vehiculo.Patente,
+            Tipo_reclamo.Tipo_reclamo,
+            Estado.detail_estado,
+            fecha
+            FROM `Reclamos` 
+            JOIN Estado ON Reclamos.id_estado = Estado.id_estado
+            JOIN Vehiculo ON Reclamos.id_vehiculo = Vehiculo.id_vehiculo
+            JOIN Modelo ON Vehiculo.id_modelo = Modelo.id_modelo
+            JOIN Tipo_reclamo on Reclamos.id_tipo_reclamo = Tipo_reclamo.id_tipo_reclamo";
+            $resultado = self::$cnx->prepare($query);
+			//Ejecución de la sentencia SQL.
+			$resultado->execute();
+			//fetchAll — Devuelve un array que contiene todas las filas del conjunto
+			//de resultados
+			return $resultado->fetchAll(PDO::FETCH_OBJ);
+        }
 
         public static function Listar($id_Reclamo){
 			try

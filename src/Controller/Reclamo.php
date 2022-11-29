@@ -26,6 +26,10 @@ class ReclamoController{
         
         return ReclamoDao::SearchReclamo($obj_user);
     }
+    public static function searchReclamoAdmin()
+    {   
+        return ReclamoDao::SearchReclamoAdmin();
+    }
 
     public static function Listar($id_Reclamo){
         $pvd = new Reclamo();

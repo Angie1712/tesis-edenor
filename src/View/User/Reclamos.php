@@ -246,6 +246,7 @@ require '../../Controller/Reclamo.php'
                                     </tbody>
                                     <tbody>
                                     <input type="hidden" name="id_user" value="<?php echo $_SESSION["user"]['id']; ?>" />
+                                    <?php if($_SESSION["user"]["role"] == 2) {?>
                                         <?php foreach(ReclamoController::searchReclamo($_SESSION["user"]['id']) as $r) : ?>
                                         <tr>
                                             <td><?php echo $r->Modelo; ?></td>
@@ -262,6 +263,25 @@ require '../../Controller/Reclamo.php'
                                             <?php } ?>
                                         </tr>
                                         <?php endforeach;?>
+                                        <?php } ?>
+                                    <?php if($_SESSION["user"]["role"] == 1) {?>
+                                    <?php foreach(ReclamoController::searchReclamoAdmin() as $r) : ?>
+                                        <tr>
+                                            <td><?php echo $r->Modelo; ?></td>
+                                            <td><?php echo $r->Patente; ?></td>
+                                            <td><?php echo $r->Tipo_reclamo; ?></td>
+                                            <td><?php echo $r->Reclamo; ?></td>
+                                            <td><?php echo $r->detail_estado ?></td>
+                                            <td><?php echo $r->fecha; ?></td>
+                                            <?php if($_SESSION["user"]["role"] == 1) {?>
+                                            <td>
+                                                <a href="Edit_reclamo.php?id_Reclamo=<?php echo $r->id_Reclamo; ?>">Editar</a>
+                                                <button onclick="eliminar('<?php echo $r->id_Reclamo?>')"> Eliminar</button>
+                                            </td>
+                                            <?php } ?>
+                                        </tr>
+                                        <?php endforeach;?>
+                                        <?php } ?>
                                     <tbody> 
                                     
                                        
