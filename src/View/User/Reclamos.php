@@ -245,7 +245,8 @@ require '../../Controller/Reclamo.php'
                                     </thead>
                                     </tbody>
                                     <tbody>
-                                        <?php foreach(ReclamoController::searchReclamo() as $r) : ?>
+                                    <input type="hidden" name="id_user" value="<?php echo $_SESSION["user"]['id']; ?>" />
+                                        <?php foreach(ReclamoController::searchReclamo($_SESSION["user"]['id']) as $r) : ?>
                                         <tr>
                                             <td><?php echo $r->Modelo; ?></td>
                                             <td><?php echo $r->Patente; ?></td>

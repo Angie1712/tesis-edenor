@@ -193,6 +193,7 @@ require '../../Controller/TipoReclamo.php';
                             <div class="form-group row">
                                 <div class="col-sm-4 mb-3 mb-sm-0">
                                 <label for="exampleFormControlSelect1">Vehiculo</label>
+                                <input type="hidden" name="id_user" value="<?php echo $_SESSION["user"]['id']; ?>" />
                                     <select method="post" name="Vehiculo" class="form-control" id="examCategory">
                                         <?php foreach(VehiculoController::searchVehiculo() as $r) :?>
                                             <?php var_dump($r); ?>
