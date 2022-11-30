@@ -27,33 +27,37 @@ require 'heder.php';
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-
                 <!-- Page Heading -->
-                    <h1><strong>Editar Vehiculo con patente:  <?php echo $pvd->Patente; ?> </strong></h1>
+                    
                     <br>
             <form id="frm-persona" action="?Patente=<?php echo $_REQUEST['Patente']?>" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="Patente" value="<?php echo $pvd->Patente; ?>" />
-                <label>Modelo</label>
-                <br>
-                <select name="modelo" class="form-select styled-select" aria-label="Default select example">
-                    <?php 
-                    foreach(VehiculoDao::searchModelo() as $r) :
-                    $selected = ($pvd->Modelo == $r->Modelo) ? "selected": '';
-                    ?>
-                    <option 
-                        value='<?php echo $r->id_modelo;?>' 
-                        <?php echo $selected;?> 
-                    >
-                        <?php echo $r->Modelo;?>
-                    </option>
-                    <?php endforeach; ?>
-                </select>
-                <br>
+            <div class="card">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Editar Vehiculo con patente:  <?php echo $pvd->Patente; ?></h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="p-5">
+                            <input type="hidden" name="Patente" value="<?php echo $pvd->Patente; ?>" />
+                                <label>Modelo</label>
+                                <br>
+                                <select name="modelo" class="form-select styled-select" aria-label="Default select example">
+                                    <?php foreach(VehiculoDao::searchModelo() as $r) :
+                                    $selected = ($pvd->Modelo == $r->Modelo) ? "selected": '';?>
+                                        <option 
+                                        value='<?php echo $r->id_modelo;?>' 
+                                        <?php echo $selected;?> 
+                                        >
+                                        <?php echo $r->Modelo;?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <br>
                 <div class="buttons">
                 <button class="btn btn-outline-primary px-4" type="submit">Actualizar</button>
-                </div>
-            </form>
+                
             </div>
-            <!-- End of Main Content -->
-
+            </form>
+            </div>             
 <?php require 'footer.php' ?>

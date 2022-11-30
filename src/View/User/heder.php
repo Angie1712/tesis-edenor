@@ -23,13 +23,17 @@ if($_SESSION["user"]["role"] !== '1'|| $_SESSION["user"]["role"] !== '2'){
     <title>Edenor</title>
 
     <!-- Custom fonts for this template-->
-    <link href="/Assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../../Assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
+        <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+        
     <!-- Custom styles for this template-->
-    <link href="/Assets/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../../Assets/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../../Assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
 
 </head>
 
@@ -96,7 +100,7 @@ if($_SESSION["user"]["role"] !== '1'|| $_SESSION["user"]["role"] !== '2'){
                     <!-- Topbar Search -->
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
+                        <!-- <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
@@ -104,7 +108,7 @@ if($_SESSION["user"]["role"] !== '1'|| $_SESSION["user"]["role"] !== '2'){
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
-                        </div>
+                        </div> -->
                     </form>
 
                     <!-- Topbar Navbar -->
@@ -142,7 +146,7 @@ if($_SESSION["user"]["role"] !== '1'|| $_SESSION["user"]["role"] !== '2'){
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION["user"]['name']; ?></span>
                                 <img class="img-profile rounded-circle"
                                     src="/Assets/img/undraw_profile.svg">
                             </a>
@@ -156,7 +160,7 @@ if($_SESSION["user"]["role"] !== '1'|| $_SESSION["user"]["role"] !== '2'){
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="../Login/index.php" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Cerrar sesión
                                 </a>
                             </div>
                         </li>

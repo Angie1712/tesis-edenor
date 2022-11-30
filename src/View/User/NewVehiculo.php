@@ -16,7 +16,6 @@ require 'heder.php';
 ?>
 <!DOCTYPE html>
 
-                <h1><strong>Crear Vehiculos</strong></h1>
                 <div class="container-fluid">
     <form id="vehiculo" action="CreatVehiculo.php" method="POST">
         <div class="card">

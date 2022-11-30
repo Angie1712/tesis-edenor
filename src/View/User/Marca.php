@@ -21,7 +21,7 @@ require 'heder.php'
     {
         Swal.fire({
   title: '¿Estas Seguro?',
-  text: "No podras recuperar la indormación!",
+  text: "No podras recuperar la información!",
   icon: 'warning',
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
@@ -79,8 +79,8 @@ require 'heder.php'
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                        <th style="width:120px;">Marca</th>
-                                        <th style="width:120px;">Editar</th>
+                                        <th style="width:250px;">Marca</th>
+                                        <th style="width:30px;">Editar</th>
                                         </tr>
                                     </thead>
                                     </tbody>
@@ -89,8 +89,8 @@ require 'heder.php'
                                         <tr>
                                             <td><?php echo $r->Marca; ?></td>
                                             <td>
-                                                <a href="Edit_marca.php?id_marca=<?php echo $r->id_marca; ?>">Editar</a>
-                                                <button onclick="eliminar('<?php echo $r->id_marca?>')"> Eliminar</button>
+                                                <a class="btn btn-warning btn-circle" href="Edit_marca.php?id_marca=<?php echo $r->id_marca; ?>"><i class="fas fa-edit"></i></a>
+                                                <button class="btn btn-danger btn-circle" onclick="eliminar('<?php echo $r->id_marca?>')"> <i class="fas fa-trash"></i></button>
                                             </td>
                                         </tr>
                                         <?php endforeach;?>

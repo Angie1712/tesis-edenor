@@ -15,7 +15,6 @@ require '../../Controller/Marca.php';
 require 'heder.php';
 ?>
 <!DOCTYPE html>
-                <h1><strong>Nuevo Modelo: </strong></h1>
                 <div class="container-fluid">
     <form id="vehiculo" action="CreatModelo.php" method="POST">
         <div class="card">

@@ -1,13 +1,59 @@
 <?php
-include_once 'heder.php';
+session_start();
 
-require '../../Controller/Vehiculo.php'
+if(!isset($_SESSION["user"]))
+{ 
+    echo "<script> window.location='logout.php'; </script>";
+}
+if($_SESSION["user"]["role"] !== '1'|| $_SESSION["user"]["role"] !== '2'){
+}else {
+    echo "<script> window.location='logout.php'; </script>";
+}
+require '../../Controller/Vehiculo.php';
 
-
+require 'heder.php'
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+
+    <script language="JavaScript">
+    const eliminar = (patente) =>
+    {
+        Swal.fire({
+  title: '¿Estas Seguro?',
+  text: "Al eliminar el vehiculo se eliminaran todos los reclamos asociados",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Si, eliminalo!', 
+  cancelButtonText: 'Cancelar'
+}).then((result) => {
+  if (result.isConfirmed) {
+      var url = "DeleteVehiculo.php"
+      var formdata = new FormData();
+      formdata.append('tipo_operacion', 'eliminar');
+      formdata.append('patente', patente);
+      fetch(url, {
+          method: 'post',
+          body: formdata
+      }).then(res => res.json())
+      .then(response =>{
+          console.log('Success:', response)
+          Swal.fire(
+          'Eliminado!',
+          'Su vehiculo se elimino.',
+          'success',
+           window.location.href = "Vehiculos.php"
+        )
+      })
+      .catch(error => console.error('Error:', error));
+  }
+})
+    }
+</script>
+
+</head>
 
                 
                 <div class="container-fluid">
@@ -38,7 +84,7 @@ require '../../Controller/Vehiculo.php'
                                         <th style="width:120px;">Patente</th>
                                         <th style="width:180px;">Modelo</th>
                                         <th style="width:120px;">Marca</th>
-                                        <th style="width:120px;">Editar</th>
+                                        <th style="width:30px;">Editar</th>
                                         </tr>
                                     </thead>
                                     </tbody>
@@ -49,8 +95,8 @@ require '../../Controller/Vehiculo.php'
                                             <td><?php echo $r->Modelo; ?></td>
                                             <td><?php echo $r->Marca; ?></td>
                                             <td>
-                                                <a href="Edit_vehiculo.php?Patente=<?php echo $r->Patente; ?>">Editar</a>
-                                                <button onclick="eliminar('<?php echo $r->Patente?>')"> Eliminar</button>
+                                            <a class="btn btn-warning btn-circle" href="Edit_vehiculo.php?Patente=<?php echo $r->Patente; ?>"><i class="fas fa-edit"></i></a>
+                                                <button class="btn btn-danger btn-circle" onclick="eliminar('<?php echo $r->Patente?>')"><i class="fas fa-trash"></i></button>
                                             </td>
                                         </tr>
                                         <?php endforeach;?>
@@ -72,6 +118,28 @@ require '../../Controller/Vehiculo.php'
     </div>
     <!-- End of Page Wrapper -->
 
-<?php
-include_once 'footer.php';
-?>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="../Login/index.php">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php require 'footer.php' ?>

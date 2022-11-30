@@ -16,8 +16,9 @@ require 'heder.php';
 
 ?>
 <!DOCTYPE html>
-                <h1><strong>Nueva Marca: </strong></h1>
+                
                 <div class="container-fluid">
+                
     <form id="vehiculo" action="CreatMarca.php" method="POST">
         <div class="card">
             <div class="card-header py-3">

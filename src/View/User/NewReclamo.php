@@ -17,7 +17,6 @@ require 'heder.php';
 ?>
 <!DOCTYPE html>
 
-                <h1><strong>Nuevo Reclamo</strong></h1>
                 <div class="container-fluid">
     <form id="vehiculo" action="CreatReclamo.php" method="POST">
         <div class="card">

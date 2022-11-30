@@ -15,7 +15,6 @@ require 'heder.php';
 ?>
 <!DOCTYPE html>
 
-                <h1><strong>Nuevo Usuario: </strong></h1>
                 <div class="container-fluid">
     <form id="vehiculo" action="CreatUser.php" method="POST">
         <div class="card">

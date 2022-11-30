@@ -3393,7 +3393,7 @@ readers do not read off random characters that represent icons */
 .fa-sd-card:before {
   content: "\f7c2"; }
 
-.fa-search:before {
+.fa-Buscar:before {
   content: "\f002"; }
 
 .fa-search-dollar:before {

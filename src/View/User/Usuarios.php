@@ -21,7 +21,7 @@ require '../../Controller/User.php'
     {
         Swal.fire({
     title: '¿Estas Seguro?',
-    text: "No podras recuperar la indormación!",
+    text: "No podras recuperar la información!",
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
@@ -84,7 +84,7 @@ require '../../Controller/User.php'
                                         <th style="width:120px;">Rol</th>
                                         <th style="width:120px;">Legajo</th>
                                         <th style="width:120px;">DNI</th>
-                                        <th style="width:120px;">Editar</th>
+                                        <th style="width:60px;">Editar</th>
                                         </tr>
                                     </thead>
                                     </tbody>
@@ -98,8 +98,8 @@ require '../../Controller/User.php'
                                             <td><?php echo $r->Legajo; ?></td>
                                             <td><?php echo $r->dni; ?></td>
                                             <td>
-                                                <a href="Edit_user.php?id_user=<?php echo $r->id_user; ?>">Editar</a>
-                                                <button onclick="eliminar('<?php echo $r->id_user?>')"> Eliminar</button>
+                                                <a class="btn btn-warning btn-circle" href="Edit_user.php?id_user=<?php echo $r->id_user; ?>"><i class="fas fa-edit"></i></a>
+                                                <button class="btn btn-danger btn-circle" onclick="eliminar('<?php echo $r->id_user?>')"><i class="fas fa-trash"></i></button>
                                             </td>
                                         </tr>
                                         <?php endforeach;?>

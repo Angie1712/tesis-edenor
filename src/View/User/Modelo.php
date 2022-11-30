@@ -22,7 +22,7 @@ require 'heder.php';
     {
         Swal.fire({
   title: '¿Estas Seguro?',
-  text: "No podras recuperar la indormación!",
+  text: "No podras recuperar la información!",
   icon: 'warning',
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
@@ -80,9 +80,9 @@ require 'heder.php';
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                        <th style="width:120px;">Modelo</th>
-                                        <th style="width:120px;">Marca</th>
-                                        <th style="width:120px;">Editar</th>
+                                        <th style="width:160px;">Modelo</th>
+                                        <th style="width:160px;">Marca</th>
+                                        <th style="width:30px;">Editar</th>
                                         </tr>
                                     </thead>
                                     </tbody>
@@ -92,8 +92,8 @@ require 'heder.php';
                                             <td><?php echo $r->Modelo; ?></td>
                                             <td><?php echo $r->Marca; ?></td>
                                             <td>
-                                                <a href="Edit_modelo.php?id_modelo=<?php echo $r->id_modelo; ?>">Editar</a>
-                                                <button onclick="eliminar('<?php echo $r->id_modelo?>')"> Eliminar</button>
+                                                <a class="btn btn-warning btn-circle" href="Edit_modelo.php?id_modelo=<?php echo $r->id_modelo; ?>"><i class="fas fa-edit"></i></a>
+                                                <button class="btn btn-danger btn-circle"  onclick="eliminar('<?php echo $r->id_modelo?>')"> <i class="fas fa-trash"></i></button>
                                             </td>
                                         </tr>
                                         <?php endforeach;?>
@@ -109,4 +109,4 @@ require 'heder.php';
                 </div>
             <!-- End of Main Content -->
 
-<?php require 'footer.php'; ?>
+<?php require 'footer.php' ?>
